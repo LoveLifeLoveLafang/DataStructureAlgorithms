@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/air/Desktop/C实验/sort/main.cpp
+iostream
+-
+radixSort.h
+/Users/air/Desktop/C实验/sort/radixSort.h
+
+/Users/air/Desktop/C实验/sort/radixSort.h
+

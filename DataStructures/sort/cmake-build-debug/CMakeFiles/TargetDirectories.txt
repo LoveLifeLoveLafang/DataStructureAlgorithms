@@ -1,0 +1,3 @@
+/Users/air/Desktop/C实验/sort/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/air/Desktop/C实验/sort/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/air/Desktop/C实验/sort/cmake-build-debug/CMakeFiles/sort.dir
