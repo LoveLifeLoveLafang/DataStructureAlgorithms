@@ -1,1 +1,1 @@
-implement some algorithms puzzles in C/C++/GO/javascript/python
+implement some algorithm puzzles in C/C++/GO/javascript/python
