@@ -335,9 +335,174 @@ public:
         return head;
     }
 
+    /*
+        19.删除链表的倒数第N个节点
+    */
+    ListNode *removeNthFromEnd(ListNode* head, int n) {
+        if ( head == NULL )
+            return NULL;
+        ListNode *dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode *p1 = dummy, *p2 = dummy;
+
+        while(p2 != NULL && n > 0) {
+            n--;
+            p2 = p2->next;
+        }
+
+        while(p2->next != NULL) {
+            p1 = p1->next;
+            p2 = p2->next;
+        }
+        if ( p1 != NULL && p1->next != NULL )
+            p1->next = p1->next->next;
+
+        return dummy->next;
+    }
+
+    /*
+        142.环形链表II
+    */
+   ListNode *detectCycle(ListNode *head) {
+        //快慢指针从头部出发
+        ListNode *fast = head, *slow = head;
+
+        while(true) {
+            //如果fast走到null位置表示链表无环
+            if ( fast == NULL || fast->next == NULL)
+                return NULL;
+            slow = slow->next;
+            fast = fast->next->next;
+            if ( fast == slow )
+                break;
+        }
+
+        //第一次相遇，fast指针重新指回头部，slow保留在相遇的地方
+        slow = head;
+        while( slow != fast ) {
+            //fast改为每次走一步，slow不变，再次相遇时即为入环位置
+            slow = slow->next;
+            fast = fast->next;
+        }
+        return slow;
+    }
+
+    /*
+        2.两数相加
+    */
+    ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+        if (l1 == NULL)
+            return l2;
+        if (l2 == NULL)
+            return l1;
+
+        ListNode *dummy = new ListNode(0);
+        ListNode *cur = dummy;
+
+        int i = 0; //进位
+        while (l1 != NULL && l2 != NULL)
+        {
+            int j = (l1->val + l2->val + i) % 10;
+            i = (l1->val + l2->val + i) / 10;
+            cur->next = new ListNode(j);
+            cur = cur->next;
+            l1 = l1->next;
+            l2 = l2->next;
+        }
+
+        while(l1 != NULL) {
+            int j = (l1->val + i) % 10;
+            i = (l1->val + i) / 10;
+            cur->next = new ListNode(j);
+            cur = cur->next;
+            l1 = l1->next;
+        }
+
+        while(l2 != NULL) {
+            int j = (l2->val + i) % 10;
+            i = (l2->val + i) / 10;
+            cur->next = new ListNode(j);
+            cur = cur->next;
+            l2 = l2->next;
+        }
+
+        if (i > 0) {
+            cur->next = new ListNode(i);
+        }
+
+        return dummy->next;
+    }
+
+    /*
+        430.扁平化多级双向链表
+    */
 
 
+    /*
+        61.旋转链表
+    */
+    ListNode *rotateRight(ListNode *head, int k) {
+        if (head == NULL)
+            return NULL;
+        int length = 0;
+        ListNode *cur = head;
+        while(cur != NULL) {
+            cur = cur->next;
+            length++;
+        }
+        k = k % length;
 
+        ListNode *dummy = new ListNode(0);
+        dummy->next = head;
+        cur = dummy;
+        int count = length - k;
+        while(count > 0 && cur != NULL) {
+            cur = cur->next;
+            count--;
+        }
+
+        ListNode *p = cur;
+        while(p->next != NULL) {
+            p = p->next;
+        }
+        p->next = dummy->next;
+        dummy->next = cur->next;
+        cur->next = NULL;
+        return dummy->next;
+    }
+
+    /*
+        203.移除链表元素
+    */
+    ListNode* removeElements(ListNode *head, int val) {
+        if (head == NULL)
+            return head;
+        ListNode *dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode *cur = dummy;
+        while(cur != NULL) {
+            if (cur->next != NULL && cur->next->val == val) {
+                cur->next = cur->next->next;
+            } else {
+                cur = cur->next;
+            }
+        }
+        return dummy->next;
+    }
+
+    /*
+        328.奇偶链表
+    */
+    ListNode *oddEvenList(ListNode *head) {
+
+    }
+
+    /*
+        234.回文链表
+    */
+    bool isPalindrome(ListNode *head) {
+
+    }
 };
 
 #endif //CC_SOLUTION_H
