@@ -8,6 +8,7 @@
 #include <iostream>
 #include <map>
 #include <queue>
+#include <vector>
 
 using namespace std;
 
@@ -494,14 +495,48 @@ public:
         328.奇偶链表
     */
     ListNode *oddEvenList(ListNode *head) {
+        if (head == NULL || head->next == NULL)
+            return head;
+        ListNode *l1 = head, *p1 = head;
+        ListNode *l2 = head->next, *p2 = head->next;
 
+        ListNode *last1 = head, *last2 = head->next;
+        while (p1 != NULL && p1->next != NULL && p2 != NULL && p2->next)
+        {
+            p1 = p1->next->next;
+            p2 = p2->next->next;
+            last1->next = p1;
+            last2->next = p2;
+            last1 = last1->next;
+            last2 = last2->next;
+        }
+
+        last1->next = l2;
+        return l1;
     }
 
     /*
         234.回文链表
     */
     bool isPalindrome(ListNode *head) {
+        if(head == NULL)
+            return true;
+        ListNode *cur = head;
+        vector<int> vec;
+        while(cur != NULL) {
+            vec.push_back(cur->val);
+            cur = cur->next;
+        }
 
+        int i = 0, j = vec.size() - 1;
+        while(i < j) {
+            if (vec[i] != vec[j])
+                return false;
+            i++;
+            j--;
+        }
+
+        return true;
     }
 };
 
